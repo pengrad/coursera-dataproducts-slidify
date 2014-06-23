@@ -1,6 +1,6 @@
 ---
 title       : Ideal Weight Calculator
-subtitle    : simple weight calculator
+subtitle    : 
 author      : Stas Parshin, 2014
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -13,25 +13,66 @@ knit        : slidify::knit2slides
 
 ## Overview
 
-The ideal human body weight has been a topic of debate for a very long time. Hundreds of formulas and theories have been invented and put to the test, but the answer is still debatable. 
+* The ideal human body weight has been a topic of debate for a very long time. Hundreds of formulas and theories have been invented and put to the test, but the answer is still debatable. 
 
-The major factors that contribute to a person's ideal weight are height, gender, age, body frame, body type, and so on.
+* The major factors that contribute to a person's ideal weight are height, gender, age, body frame, body type, and so on.
 
-This simple calculator manipulates only gender and height.
+* This simple calculator manipulates only gender and height.
 
 ---
-
 ## Formulas
 
-Here is a list of the most popular "ideal weight" formulas:
+### Here is a list of the "ideal weight" formulas used in this app:
+
+* __J. D. Robinson Formula (1983)__  
+52 kg + 1.9 kg per inch over 5 feet       (man)  
+49 kg + 1.7 kg per inch over 5 feet       (woman)
+
+* __G. J. Hamwi Formula (1964)__  
+48.0 kg + 2.7 kg per inch over 5 feet       (man)  
+45.5 kg + 2.2 kg per inch over 5 feet       (woman)
+
+* __The World Health Organization (WHO) Recommended Healthy BMI Range__  
+18.5 - 25 for both man and woman
 
 ---
+## Examples
 
-## Interactive Console
+### If you're 30-year-old man, 180cm tall  
+* Based on the Robinson formula (1983), your ideal weight is __72.6 kgs__
+* Based on the Hamwi formula (1964), your ideal weight is __77.3 kgs__
+* Based on the healthy BMI recommendation, your recommended weight is __59.9 kgs - 81.0 kgs__
+
+### If you're 30-year-old woman, 170cm tall
+* Based on the Robinson formula (1983), your ideal weight is __60.8 kg__s
+* Based on the Hamwi formula (1964), your ideal weight is __60.7 kgs__
+* Based on the healthy BMI recommendation, your recommended weight is __53.5 kgs - 72.3 kgs__
+
+---
+## Interactive Example
+
+### Result of Robinson formula for previous man and woman in code view
+
+
+
+
+```r
+w <- function(height, weight, diff) {
+  round(weight + diff * (height-cm5feet)/cm1inch, 1)
+}
+
+w1 <- function(sex, height) {
+  w <- if(sex==1) 52 else 49
+  d <- if(sex==1) 1.9 else 1.7
+  w(height, w, d)
+}
+```
 
 
 ```
-## [1] 76.4
+## [1] "72.6 kg  is your ideal weight based on the Robinson formula (1983)"
 ```
 
----
+```
+## [1] "60.8 kg  is your ideal weight based on the Robinson formula (1983)"
+```
